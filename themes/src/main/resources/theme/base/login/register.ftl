@@ -1,45 +1,9 @@
 <#import "template.ftl" as layout>
-<@layout.registrationLayout displayMessage=!messagesPerField.existsError('firstName','lastName','email','username','password','password-confirm'); section>
+<@layout.registrationLayout displayMessage=!messagesPerField.existsError('email','username','password','password-confirm'); section>
     <#if section = "header">
         ${msg("registerTitle")}
     <#elseif section = "form">
         <form id="kc-register-form" class="${properties.kcFormClass!}" action="${url.registrationAction}" method="post">
-            <div class="${properties.kcFormGroupClass!}">
-                <div class="${properties.kcLabelWrapperClass!}">
-                    <label for="firstName" class="${properties.kcLabelClass!}">${msg("firstName")}</label>
-                </div>
-                <div class="${properties.kcInputWrapperClass!}">
-                    <input type="text" id="firstName" class="${properties.kcInputClass!}" name="firstName"
-                           value="${(register.formData.firstName!'')}"
-                           aria-invalid="<#if messagesPerField.existsError('firstName')>true</#if>"
-                    />
-
-                    <#if messagesPerField.existsError('firstName')>
-                        <span id="input-error-firstname" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
-                            ${kcSanitize(messagesPerField.get('firstName'))?no_esc}
-                        </span>
-                    </#if>
-                </div>
-            </div>
-
-            <div class="${properties.kcFormGroupClass!}">
-                <div class="${properties.kcLabelWrapperClass!}">
-                    <label for="lastName" class="${properties.kcLabelClass!}">${msg("lastName")}</label>
-                </div>
-                <div class="${properties.kcInputWrapperClass!}">
-                    <input type="text" id="lastName" class="${properties.kcInputClass!}" name="lastName"
-                           value="${(register.formData.lastName!'')}"
-                           aria-invalid="<#if messagesPerField.existsError('lastName')>true</#if>"
-                    />
-
-                    <#if messagesPerField.existsError('lastName')>
-                        <span id="input-error-lastname" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
-                            ${kcSanitize(messagesPerField.get('lastName'))?no_esc}
-                        </span>
-                    </#if>
-                </div>
-            </div>
-
             <div class="${properties.kcFormGroupClass!}">
                 <div class="${properties.kcLabelWrapperClass!}">
                     <label for="email" class="${properties.kcLabelClass!}">${msg("email")}</label>
